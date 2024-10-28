@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:heygift_app_frontend/components/CustomBottomNavigationBar.dart';
+import 'package:heygift_app_frontend/screens/home/brands_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -48,12 +49,12 @@ class HomeScreen extends StatelessWidget {
                       mainAxisSpacing: 10,
                     ),
                     children: [
-                      _buildCategoryCard('Deporte', 'assets/icons/Deporte.png', Colors.blue),
-                      _buildCategoryCard('Moda', 'assets/icons/Moda.png', Colors.pink),
-                      _buildCategoryCard('Hogar', 'assets/icons/Hogar.png', Colors.yellow),
-                      _buildCategoryCard('Restaurantes', 'assets/icons/Restaurantes.png', Colors.orange),
-                      _buildCategoryCard('Cosméticos', 'assets/icons/Cosmeticos.png', Colors.green),
-                      _buildCategoryCard('Entretenimiento', 'assets/icons/Entretenimiento.png', const Color.fromARGB(255, 70, 48, 16)),
+                      _buildCategoryCard('Deporte', 'assets/icons/Deporte.png', Colors.blue, context),
+                      _buildCategoryCard('Moda', 'assets/icons/Moda.png', Colors.pink, context),
+                      _buildCategoryCard('Hogar', 'assets/icons/Hogar.png', Colors.yellow, context),
+                      _buildCategoryCard('Restaurantes', 'assets/icons/Restaurantes.png', Colors.orange, context),
+                      _buildCategoryCard('Cosméticos', 'assets/icons/Cosmeticos.png', Colors.green, context),
+                      _buildCategoryCard('Entretenimiento', 'assets/icons/Entretenimiento.png', const Color.fromARGB(255, 70, 48, 16), context),
                     ],
                   ),
                   SizedBox(height: 20),
@@ -238,31 +239,49 @@ class HomeScreen extends StatelessWidget {
 
 
   // Función para crear una tarjeta de categoría
-  Widget _buildCategoryCard(String title, String imagePath, Color backgroundColor) {
-    return Container(
-      decoration: BoxDecoration(
-        color: backgroundColor.withOpacity(0.2),
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Stack(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(30.0),
-            child: Image.asset(
-              imagePath,
-              height: 60,
-              width: 60,
+  // Función para crear una tarjeta de categoría con navegación
+  Widget _buildCategoryCard(String title, String imagePath, Color backgroundColor, BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        if (title == 'Deporte') {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => BrandsScreen()));
+        } else if (title == 'Moda') {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => BrandsScreen()));
+        } else if (title == 'Hogar') {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => BrandsScreen()));
+        } else if (title == 'Restaurantes') {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => BrandsScreen()));
+        } else if (title == 'Cosméticos') {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => BrandsScreen()));
+        } else if (title == 'Entretenimiento') {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => BrandsScreen()));
+        }
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          color: backgroundColor.withOpacity(0.2),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Stack(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(30.0),
+              child: Image.asset(
+                imagePath,
+                height: 60,
+                width: 60,
+              ),
             ),
-          ),
-          Positioned(
-            top: 8,
-            left: 8,
-            child: Text(
-              title,
-              style: TextStyle(color: Colors.black, fontSize: 14),
+            Positioned(
+              top: 8,
+              left: 8,
+              child: Text(
+                title,
+                style: TextStyle(color: Colors.black, fontSize: 14),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
