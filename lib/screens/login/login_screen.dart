@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:heygift_app_frontend/screens/login/otp_verification_screen.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -64,7 +65,10 @@ class LoginScreen extends StatelessWidget {
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
-                  // Acción al presionar "Continue"
+                    Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => OTPVerificationScreen(phoneNumber: '', userName: '',)),
+                    );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF5A2D81),

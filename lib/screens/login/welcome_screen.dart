@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:heygift_app_frontend/screens/login_screen.dart';
+import 'package:heygift_app_frontend/screens/login/login_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   @override

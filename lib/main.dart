@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:heygift_app_frontend/screens/welcome_screen.dart';
-
+import 'package:heygift_app_frontend/screens/login/welcome_screen.dart';
 void main() {
   runApp(const MyApp());
 }
