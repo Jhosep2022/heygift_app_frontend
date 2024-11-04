@@ -1,5 +1,7 @@
 // lib/components/CustomBottomNavigationBar.dart
 import 'package:flutter/material.dart';
+import 'package:heygift_app_frontend/screens/billetera/gift_screen.dart';
+import 'package:heygift_app_frontend/screens/conect/connect_screen.dart';
 import 'package:heygift_app_frontend/screens/home/home_screen.dart';
 import 'package:heygift_app_frontend/screens/perfil/profile_screen.dart';
 
@@ -21,13 +23,25 @@ class CustomBottomNavigationBar extends StatelessWidget {
               context,
               MaterialPageRoute(builder: (context) => HomeScreen()),
             );
-            break;
+          break;
+          case 1: // Conect
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => ConnectScreen()),
+            );
+          break;
+          case 2: // Billetera
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => GiftScreen()),
+            );
+          break;
           case 3: // Perfil
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(builder: (context) => ProfileScreen()),
             );
-            break;
+          break;
           // Agrega otros casos si necesitas navegación para las otras opciones
         }
       },

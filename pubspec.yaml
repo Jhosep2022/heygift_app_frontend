@@ -31,10 +31,12 @@ dependencies:
   flutter:
     sdk: flutter
 
-
   cupertino_icons: ^1.0.8
   intl_phone_number_input: ^0.7.0+2
   pin_code_fields: ^8.0.1
+  qr_code_scanner: ^1.0.1
+  image_picker: ^1.1.2
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:

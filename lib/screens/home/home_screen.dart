@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:heygift_app_frontend/components/CustomBottomNavigationBar.dart';
 import 'package:heygift_app_frontend/screens/home/brands_screen.dart';
+import 'package:heygift_app_frontend/screens/home/emprendimientos_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -82,7 +83,7 @@ class HomeScreen extends StatelessWidget {
                   _buildPromoDiscountCard(),
                   SizedBox(height: 20),
                   // Emprendimientos de Mujeres
-                  _buildSectionTitle('Emprendimientos de Mujeres', 'Ver todos'),
+                  _buildSectionTitle('Emprendimientos de Mujeres', 'Ver todos', context),
                   SizedBox(height: 10),
                   _buildHorizontalCards([
                     _buildBusinessCard('ArteCampo', 'Categoría: Hogar', 'assets/images/utepsa.jpg', 4.8, 50),
@@ -119,7 +120,7 @@ class HomeScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _buildSectionTitle('Tus tiendas favoritas', ''),
+                  _buildSectionTitle('Tus tiendas favoritas', '', context),
                   SizedBox(height: 10),
                   _buildHorizontalCards([
                     _buildFavoriteStoreCard('Yogen Früz', 'assets/images/udabol.jpg'),
@@ -139,7 +140,7 @@ class HomeScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _buildSectionTitle('Tiendas con mejores ofertas', ''),
+                  _buildSectionTitle('Tiendas con mejores ofertas', '', context),
                   SizedBox(height: 10),
                   _buildHorizontalCards([
                     _buildStoreOfferCard('Multicenter', 'assets/images/udabol.jpg', 'Hasta 20% DTO', 'Desde Bs. 100'),
@@ -301,7 +302,7 @@ class HomeScreen extends StatelessWidget {
             '¿Cómo funciona HeyGift?',
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),
           ),
-          SizedBox(height: 40),
+          SizedBox(height: 50),
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
@@ -331,11 +332,12 @@ class HomeScreen extends StatelessWidget {
             color: Color(0xFF512B7A),
             borderRadius: BorderRadius.circular(10),
           ),
-          width: 102,
-          height: 100,
+          width: 100,
+          height: 90,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(height: 30),
+              SizedBox(height: 20), // Ajuste para hacer más espacio en la parte superior
               Text(
                 description,
                 textAlign: TextAlign.center,
@@ -345,13 +347,17 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
         Positioned(
-          top: -20,
-          left: 20,
-          right: 20,
+          top: -22, // Posición ajustada para que el ícono esté completamente visible
+          left: 25,
+          right: 25,
           child: CircleAvatar(
-            radius: 18,
-            backgroundColor: Colors.white,
-            child: Icon(icon, size: 20, color: Color(0xFF512B7A)),
+            radius: 22, // Tamaño de borde morado
+            backgroundColor: Colors.purple.shade100,
+            child: CircleAvatar(
+              radius: 20, // Tamaño interior blanco
+              backgroundColor: Colors.white,
+              child: Icon(icon, size: 20, color: Color(0xFF512B7A)),
+            ),
           ),
         ),
       ],
@@ -470,21 +476,29 @@ class HomeScreen extends StatelessWidget {
   }
 
   // Función para crear la sección de títulos con botón
-  Widget _buildSectionTitle(String title, String actionText) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          title,
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-        ),
-        Text(
-          actionText,
-          style: TextStyle(fontSize: 14, color: Colors.blue),
-        ),
-      ],
-    );
-  }
+  Widget _buildSectionTitle(String title, String actionText, BuildContext context) {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            title,
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => EmprendimientosScreen()),
+              );
+            },
+            child: Text(
+              actionText,
+              style: TextStyle(fontSize: 14, color: Colors.blue),
+            ),
+          ),
+        ],
+      );
+    }
 
   // Función para crear una tarjeta de negocio
   Widget _buildBusinessCard(String title, String category, String imagePath, double rating, int price) {

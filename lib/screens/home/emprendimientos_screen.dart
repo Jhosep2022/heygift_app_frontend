@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:heygift_app_frontend/components/CustomBottomNavigationBar.dart';
-import 'package:heygift_app_frontend/screens/home/brand_detail_screen.dart';
 import 'package:heygift_app_frontend/screens/home/home_screen.dart';
 
-
-class BrandsScreen extends StatelessWidget {
+class EmprendimientosScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        automaticallyImplyLeading: false,
+        automaticallyImplyLeading: true,
         title: Image.asset(
           'assets/icons/HeyGift-Logo-Variante-PNG.png',
           height: 40,
@@ -44,13 +42,13 @@ class BrandsScreen extends StatelessWidget {
                   // Sección de 'Cómo funciona HeyGift'
                   _buildHowItWorksSection(context),
                   SizedBox(height: 20),
-                  // Título de 'Marcas'
+                  // Título de 'Emprendimientos'
                   Text(
-                    'Marcas',
+                    'Emprendimientos',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 10),
-                  // GridView de marcas
+                  // GridView de emprendimientos
                   GridView(
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
@@ -131,7 +129,7 @@ class BrandsScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(height: 20), 
+              SizedBox(height: 20), // Ajuste para hacer más espacio en la parte superior
               Text(
                 description,
                 textAlign: TextAlign.center,
@@ -141,14 +139,14 @@ class BrandsScreen extends StatelessWidget {
           ),
         ),
         Positioned(
-          top: -22,
+          top: -22, // Posición ajustada para que el ícono esté completamente visible
           left: 25,
           right: 25,
           child: CircleAvatar(
-            radius: 22,
+            radius: 22, // Tamaño de borde morado
             backgroundColor: Colors.purple.shade100,
             child: CircleAvatar(
-              radius: 20,
+              radius: 20, // Tamaño interior blanco
               backgroundColor: Colors.white,
               child: Icon(icon, size: 20, color: Color(0xFF512B7A)),
             ),
@@ -163,52 +161,37 @@ class BrandsScreen extends StatelessWidget {
     return Icon(Icons.arrow_forward, color: Color(0xFF512B7A), size: 20);
   }
 
-  // Función para crear cada tarjeta de marca
+  // Función para crear cada tarjeta de marca/emprendimiento
   Widget _buildBrandCard(String title, String imagePath, BuildContext context) {
-  return GestureDetector(
-    onTap: () {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => BrandDetailScreen(
-            brandName: title,
-            category: 'Hogar',
-            description:
-                'Multicenter es una de las compañías más grandes y consolidadas de Santa Cruz. La tienda por departamentos es hoy por hoy, la más importante de Bolivia con más de 400 trabajadores.',
-            imagePath: imagePath,
-            galleryImages: [
-              'assets/images/number.png',
-              'assets/images/number.png',
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          image: DecorationImage(
+            image: AssetImage(imagePath),
+            fit: BoxFit.cover,
+          ),
+        ),
+        alignment: Alignment.center,
+        child: Text(
+          title,
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+            shadows: [
+              Shadow(
+                blurRadius: 5.0,
+                color: Colors.black.withOpacity(0.7),
+                offset: Offset(2, 2),
+              ),
             ],
           ),
         ),
-      );
-    },
-    child: Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        image: DecorationImage(
-          image: AssetImage(imagePath),
-          fit: BoxFit.cover,
-        ),
       ),
-      alignment: Alignment.center,
-      child: Text(
-        title,
-        style: TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.bold,
-          color: Colors.white,
-          shadows: [
-            Shadow(
-              blurRadius: 5.0,
-              color: Colors.black.withOpacity(0.7),
-              offset: Offset(2, 2),
-            ),
-          ],
-        ),
-      ),
-    ),
-  );
-}
+    );
+  }
 }
